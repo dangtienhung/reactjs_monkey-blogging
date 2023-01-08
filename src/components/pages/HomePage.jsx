@@ -13,9 +13,9 @@ const HomePage = () => {
    return (
       <HomePageStyle>
          <Header />
-         <div>
+         {/* <div>
             <button onClick={handleSignOut}>Sign Out</button>
-         </div>
+         </div> */}
       </HomePageStyle>
    );
 };
