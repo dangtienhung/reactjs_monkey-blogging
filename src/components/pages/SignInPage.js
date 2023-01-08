@@ -105,6 +105,7 @@ const SignInPage = () => {
                   maxWidth: 300,
                   margin: '0 auto',
                }}
+               kind="primary"
                isLoading={isSubmitting}
                disable={isSubmitting}
             >
