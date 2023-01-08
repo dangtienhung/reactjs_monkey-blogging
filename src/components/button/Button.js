@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import LoadingSpinner from '../loading/LoadingSpinner';
+import PropTypes from 'prop-types';
 
 const ButtonStyles = styled.button`
    cursor: pointer;
@@ -22,6 +23,13 @@ const ButtonStyles = styled.button`
    justify-content: center;
 `;
 
+/**
+ * @param {*} onClick Handler onClick
+ * @requires
+ * @param {string} type Type of button 'button' | 'submit'
+ * @returns
+ */
+
 const Button = ({
    type = 'button',
    onClick = () => {},
@@ -35,6 +43,13 @@ const Button = ({
          {child}
       </ButtonStyles>
    );
+};
+
+Button.propTypes = {
+   type: PropTypes.oneOf(['button', 'submit']).isRequired,
+   isLoading: PropTypes.bool,
+   onClick: PropTypes.func,
+   children: PropTypes.node,
 };
 
 export default Button;

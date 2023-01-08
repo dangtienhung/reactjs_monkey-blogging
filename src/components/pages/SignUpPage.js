@@ -9,6 +9,11 @@ import Button from '../button/Button';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth, db } from '../../firebase/firebase-config';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { addDoc, collection } from 'firebase/firestore';
+import AuthenPage from './AuthenPage';
 
 const SignUpPageStyles = styled.div`
    /* background-color: ${(props) => props.theme.primary}; */
@@ -44,6 +49,7 @@ const schema = yup.object({
 });
 
 const SignUpPage = () => {
+   const navigate = useNavigate();
    const {
       control,
       handleSubmit,
@@ -54,16 +60,32 @@ const SignUpPage = () => {
       resolver: yupResolver(schema),
    });
    const [togglePassword, setTogglePassword] = useState(false);
-   const handleSignUP = (values) => {
-      return new Promise((resolve) => {
-         setTimeout(() => {
-            resolve();
-            console.log(
-               '🚀 ~ file: SignUpPage.js:40 ~ handleSignUP ~ values',
-               values
-            );
-         }, 3000);
+   const handleSignUP = async (values) => {
+      // return new Promise((resolve) => {
+      //    setTimeout(() => {
+      //       resolve();
+      //       console.log(
+      //          '🚀 ~ file: SignUpPage.js:40 ~ handleSignUP ~ values',
+      //          values
+      //       );
+      //    }, 3000);
+      // });
+      const user = await createUserWithEmailAndPassword(
+         auth,
+         values.email,
+         values.password
+      );
+      await updateProfile(auth.currentUser, {
+         displayName: values.fullname,
       });
+      const colRef = collection(db, 'users');
+      await addDoc(colRef, {
+         fullname: values.fullname,
+         email: values.email,
+         password: values.password,
+      });
+      toast.success('Create user successfully created!');
+      navigate('/');
    };
    useEffect(() => {
       const arrayErrors = Object.values(errors);
@@ -74,82 +96,74 @@ const SignUpPage = () => {
       }
    }, [errors]);
    return (
-      <SignUpPageStyles>
-         <div className="container">
-            <img
-               srcSet="/assets/images/logo/monkey1.png 2x"
-               alt=""
-               className="logo"
-            />
-            <h1 className="heading">Mokey Blogging</h1>
-            <form
-               className="form"
-               onSubmit={handleSubmit(handleSignUP)}
-               autoComplete="off"
-            >
-               <Field>
-                  <Label htmlFor="fullName" className="label">
-                     Full name
-                  </Label>
-                  <Input
-                     id="fullName"
-                     type="text"
-                     className="input"
-                     name="fullname"
-                     control={control}
-                     placeholder="Enter your fullname"
-                  />
-               </Field>
-               <Field>
-                  <Label htmlFor="email" className="label">
-                     Email
-                  </Label>
-                  <Input
-                     id="email"
-                     type="email"
-                     name="email"
-                     className="input"
-                     control={control}
-                     placeholder="Enter your email"
-                  />
-               </Field>
-               <Field>
-                  <Label htmlFor="password" className="label">
-                     Password
-                  </Label>
-                  <Input
-                     type={togglePassword ? 'text' : 'password'}
-                     id="password"
-                     className="input"
-                     name="password"
-                     control={control}
-                     placeholder="Enter your password"
-                  >
-                     {!togglePassword ? (
-                        <IconEyeClose
-                           onClick={() => setTogglePassword(!togglePassword)}
-                        />
-                     ) : (
-                        <IconEyeOpen
-                           onClick={() => setTogglePassword(!togglePassword)}
-                        />
-                     )}
-                  </Input>
-               </Field>
-               <Button
-                  type="submit"
-                  style={{
-                     maxWidth: 300,
-                     margin: '0 auto',
-                  }}
-                  isLoading={isSubmitting}
-                  disable={isSubmitting}
+      <AuthenPage>
+         <form
+            className="form"
+            onSubmit={handleSubmit(handleSignUP)}
+            autoComplete="off"
+         >
+            <Field>
+               <Label htmlFor="fullName" className="label">
+                  Full name
+               </Label>
+               <Input
+                  id="fullName"
+                  type="text"
+                  className="input"
+                  name="fullname"
+                  control={control}
+                  placeholder="Enter your fullname"
+               />
+            </Field>
+            <Field>
+               <Label htmlFor="email" className="label">
+                  Email
+               </Label>
+               <Input
+                  id="email"
+                  type="email"
+                  name="email"
+                  className="input"
+                  control={control}
+                  placeholder="Enter your email"
+               />
+            </Field>
+            <Field>
+               <Label htmlFor="password" className="label">
+                  Password
+               </Label>
+               <Input
+                  type={togglePassword ? 'text' : 'password'}
+                  id="password"
+                  className="input"
+                  name="password"
+                  control={control}
+                  placeholder="Enter your password"
                >
-                  Sign Up
-               </Button>
-            </form>
-         </div>
-      </SignUpPageStyles>
+                  {!togglePassword ? (
+                     <IconEyeClose
+                        onClick={() => setTogglePassword(!togglePassword)}
+                     />
+                  ) : (
+                     <IconEyeOpen
+                        onClick={() => setTogglePassword(!togglePassword)}
+                     />
+                  )}
+               </Input>
+            </Field>
+            <Button
+               type="submit"
+               style={{
+                  maxWidth: 300,
+                  margin: '0 auto',
+               }}
+               isLoading={isSubmitting}
+               disable={isSubmitting}
+            >
+               Sign Up
+            </Button>
+         </form>
+      </AuthenPage>
    );
 };
 
