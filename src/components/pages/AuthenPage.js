@@ -20,6 +20,15 @@ const AuthenticationStyle = styled.div`
       max-width: 800px;
       text-align: center;
    }
+   .have-account {
+      margin-bottom: 20px;
+      text-align: right;
+      a {
+         display: inline-block;
+         color: ${(props) => props.theme.primary};
+         font-weight: 500;
+      }
+   }
 `;
 
 const AuthenPage = ({ children }) => {

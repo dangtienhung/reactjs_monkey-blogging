@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/auth-context';
-import { useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import AuthenPage from './AuthenPage';
 import { useForm } from 'react-hook-form';
 import Field from '../field/Field';
@@ -48,12 +48,11 @@ const SignInPage = () => {
       }
    }, [errors]);
    useEffect(() => {
-      if (!userInfo.email) {
-         navigate('/sign-up');
-      } else {
+      document.title = 'Login page';
+      if (userInfo?.email) {
          navigate('/');
       }
-   }, []);
+   }, [navigate, userInfo?.email]);
    const handleSignIn = async (userInfo) => {
       if (!isValid) return;
       await signInWithEmailAndPassword(auth, userInfo.email, userInfo.password);
@@ -96,6 +95,10 @@ const SignInPage = () => {
                   )}
                </Input>
             </Field>
+            <div className="have-account">
+               You haven't an account?{' '}
+               <NavLink to="/sign-up">Register an account.</NavLink>
+            </div>
             <Button
                type="submit"
                style={{

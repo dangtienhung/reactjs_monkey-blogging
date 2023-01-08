@@ -11,7 +11,7 @@ import * as yup from 'yup';
 import { toast } from 'react-toastify';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth, db } from '../../firebase/firebase-config';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Link, NavLink, Navigate, useNavigate } from 'react-router-dom';
 import { addDoc, collection } from 'firebase/firestore';
 import AuthenPage from './AuthenPage';
 
@@ -95,6 +95,9 @@ const SignUpPage = () => {
          });
       }
    }, [errors]);
+   useEffect(() => {
+      document.title = 'Register page';
+   }, []);
    return (
       <AuthenPage>
          <form
@@ -151,6 +154,10 @@ const SignUpPage = () => {
                   )}
                </Input>
             </Field>
+            <div className="have-account">
+               You already have an account?{' '}
+               <NavLink to="/sign-in">Sign In</NavLink>
+            </div>
             <Button
                type="submit"
                style={{
