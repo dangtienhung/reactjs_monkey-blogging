@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PostCatygory from './layout/PostCatygory';
-import { PostTitle } from './layout';
+import { PostMeta, PostTitle } from './layout';
 
 const PostFeatureItemStyles = styled.div`
   width: 100%;
@@ -41,26 +41,6 @@ const PostFeatureItemStyles = styled.div`
       justify-content: space-between;
       margin-bottom: 16px;
     }
-    &-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 14px;
-      font-weight: 600;
-      color: white;
-      margin-left: auto;
-    }
-    &-time {
-    }
-    &-dot {
-      display: inline-block;
-      width: 4px;
-      height: 4px;
-      background-color: currentColor;
-      border-radius: 100rem;
-    }
-    &-author {
-    }
   }
   @media screen and (min-width: 1024px) {
     height: 272px;
@@ -79,11 +59,7 @@ const PostFeatureItem = () => {
       <div className="post-content">
         <div className="post-top">
           <PostCatygory>Kiến thức</PostCatygory>
-          <div className="post-info">
-            <span className="post-time">Mar 23</span>
-            <span className="post-dot"></span>
-            <span className="post-author">Andiez Le</span>
-          </div>
+          <PostMeta />
         </div>
         <PostTitle size="big">
           Hướng dẫn setup phòng cực chill dành cho người mới toàn tập

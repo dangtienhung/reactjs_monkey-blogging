@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { PostCatygory, PostTitle } from './layout';
+import { PostCatygory, PostMeta, PostTitle } from './layout';
 
 const PostNewItemStyle = styled.div`
   display: flex;
@@ -27,39 +27,6 @@ const PostNewItemStyle = styled.div`
         border-radius: 12px;
       }
     }
-    &-category {
-      display: inline-block;
-      padding: 8px;
-      border-radius: 8px;
-      color: #6b6b6b;
-      font-size: 12px;
-      font-weight: 600;
-      background-color: white;
-      margin-bottom: 8px;
-    }
-    &-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 14px;
-      font-weight: 600;
-      margin-left: auto;
-      color: #6b6b6b;
-    }
-    &-dot {
-      display: inline-block;
-      width: 4px;
-      height: 4px;
-      background-color: currentColor;
-      border-radius: 100rem;
-    }
-    &-title {
-      font-weight: bold;
-      line-height: 1.5;
-      display: block;
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
   }
 `;
 
@@ -77,11 +44,7 @@ const PostNewItem = () => {
         <PostTitle size="nomal">
           Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
         </PostTitle>
-        <div className="post-info">
-          <span className="post-time">Mar 23</span>
-          <span className="post-dot"></span>
-          <span className="post-author">Andiez Le</span>
-        </div>
+        <PostMeta />
       </div>
     </PostNewItemStyle>
   );

@@ -24,7 +24,6 @@ const PostCategoryStyle = styled.div`
     css`
       background-color: white;
     `};
-  margin-bottom: 14px;
   a {
     display: block;
   }
