@@ -10,6 +10,7 @@ const PostCategoryStyle = styled.div`
   font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
+  white-space: nowrap;
   background-color: #f3f3f3;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -26,6 +27,9 @@ const PostCategoryStyle = styled.div`
     `};
   a {
     display: block;
+  }
+  @media screen and (max-width: 1023.98px) {
+    font-size: 10px;
   }
 `;
 

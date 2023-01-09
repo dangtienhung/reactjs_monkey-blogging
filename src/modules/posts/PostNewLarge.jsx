@@ -15,6 +15,11 @@ const PostNewLargeStyle = styled.div`
       margin-bottom: 10px;
     }
   }
+  @media screen and (max-width: 1023.98px) {
+    &-image {
+      height: 250px;
+    }
+  }
 `;
 
 const PostNewLarge = () => {
