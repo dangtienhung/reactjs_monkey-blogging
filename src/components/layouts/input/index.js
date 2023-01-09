@@ -1,3 +1,4 @@
 import Input from './Input';
+import InputPasswordToggle from './InputPasswordToggle';
 
-export default Input;
+export { Input, InputPasswordToggle };
