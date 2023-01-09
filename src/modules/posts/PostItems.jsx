@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { PostCatygory, PostTitle } from './layout';
 
 const PostItemStyle = styled.div`
   display: flex;
@@ -63,10 +64,10 @@ const PostItems = () => {
           alt=""
         />
       </div>
-      <div className="post-category">Kiến thức</div>
-      <h3 className="post-title">
+      <PostCatygory>Kiến thức</PostCatygory>
+      <PostTitle size="nomal">
         Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
-      </h3>
+      </PostTitle>
       <div className="post-info">
         <span className="post-time">Mar 23</span>
         <span className="post-dot"></span>
