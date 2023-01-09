@@ -7,12 +7,12 @@ const PostNewLargeStyle = styled.div`
   .post {
     &-img {
       display: block;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       height: 433px;
       border-radius: 16px;
     }
     &-title {
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
   }
   @media screen and (max-width: 1023.98px) {

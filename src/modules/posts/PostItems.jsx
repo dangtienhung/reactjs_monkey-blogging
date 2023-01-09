@@ -14,6 +14,12 @@ const PostItemStyle = styled.div`
       display: block;
       width: 100%;
     }
+    &-catygory {
+      margin-bottom: 10px;
+    }
+    &-title {
+      margin-bottom: 20px;
+    }
   }
   @media screen and (max-width: 1023.98px) {
     .post {

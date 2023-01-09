@@ -6,6 +6,7 @@ const PostTitleStyle = styled.h3`
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   line-height: 1.5;
+  letter-spacing: 0.25px;
   a {
     display: block;
   }
