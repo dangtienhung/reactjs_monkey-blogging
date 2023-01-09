@@ -40,6 +40,7 @@ const PostDetailPageStyle = styled.div`
   }
   .author {
     margin-top: 40px;
+    margin-bottom: 80px;
     display: flex;
     border-radius: 20px;
     background-color: ${(props) => props.theme.grayF3};
@@ -61,13 +62,37 @@ const PostDetailPageStyle = styled.div`
     }
     &-name {
       font-weight: bold;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       font-size: 20px;
       font-family: 'Montserrat', sans-serif;
     }
     &-desc {
       font-size: 14px;
       line-height: 2;
+    }
+  }
+  @media screen and (max-width: 1023.98px) {
+    padding-bottom: 40px;
+    .post {
+      &-header {
+        flex-direction: column;
+      }
+      &-feature {
+        height: auto;
+      }
+      &-heading {
+        font-size: 26px;
+      }
+      &-content {
+        margin: 40px 0;
+      }
+    }
+    .author {
+      flex-direction: column;
+      &-image {
+        width: 100%;
+        height: auto;
+      }
     }
   }
 `;
