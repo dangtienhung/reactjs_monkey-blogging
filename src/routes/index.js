@@ -5,6 +5,9 @@ import SignInPage from '../components/pages/SignInPage';
 import HomePage from '../components/pages/HomePage';
 import NotFoundPage from '../components/pages/NotFoundPage';
 import PostDetailPage from '../components/pages/detail/PostDetailPage';
+import DashboardLayout from '../modules/dashboard/DashboardLayout';
+import DashboardPage from '../components/pages/dashboard/DashboardPage';
+import { PostManage } from '../modules/posts/pages';
 
 const RouterComponent = () => {
   return (
@@ -13,6 +16,12 @@ const RouterComponent = () => {
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/sign-in" element={<SignInPage />} />
       <Route path="/:slug" element={<PostDetailPage />} />
+
+      <Route element={<DashboardLayout />}>
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/manage/post" element={<PostManage />} />
+      </Route>
+
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
