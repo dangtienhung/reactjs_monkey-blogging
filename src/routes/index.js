@@ -7,7 +7,7 @@ import NotFoundPage from '../components/pages/NotFoundPage';
 import PostDetailPage from '../components/pages/detail/PostDetailPage';
 import DashboardLayout from '../modules/dashboard/DashboardLayout';
 import DashboardPage from '../components/pages/dashboard/DashboardPage';
-import { PostManage } from '../modules/posts/pages';
+import { PostAddNew, PostManage } from '../modules/posts/pages';
 
 const RouterComponent = () => {
   return (
@@ -20,6 +20,7 @@ const RouterComponent = () => {
       <Route element={<DashboardLayout />}>
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/manage/post" element={<PostManage />} />
+        <Route path="/manage/add-post" element={<PostAddNew />} />
       </Route>
 
       <Route path="*" element={<NotFoundPage />} />

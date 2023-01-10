@@ -144,7 +144,7 @@ const Sidebar = () => {
     <SidebarStyle>
       <div className="sidebar-logo">
         <img
-          srcSet="./assets/images/logo/monkey1.png 2x"
+          srcSet="/assets/images/logo/monkey1.png 2x"
           alt="logo monkey blogging"
         />
         <span>Monkey Blogging</span>
