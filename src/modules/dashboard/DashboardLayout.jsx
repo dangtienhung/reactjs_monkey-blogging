@@ -20,6 +20,7 @@ const DashboardLayoutStyle = styled.div`
       gap: 0 40px;
       display: grid;
       grid-template-columns: 300px minmax(0, 1fr);
+      align-items: start;
     }
   }
 `;
