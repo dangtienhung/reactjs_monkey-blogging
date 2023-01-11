@@ -15,10 +15,7 @@ import { auth } from '../../firebase/firebase-config';
 import { InputPasswordToggle } from '../layouts/input';
 
 const schema = yup.object({
-  email: yup
-    .string()
-    .required('Please enter your email')
-    .email('Please enter your email'),
+  email: yup.string().required('Please enter your email').email('Please enter your email'),
   password: yup
     .string()
     .required('Please enter your password')
@@ -57,11 +54,7 @@ const SignInPage = () => {
   };
   return (
     <AuthenPage>
-      <form
-        className="form"
-        onSubmit={handleSubmit(handleSignIn)}
-        autoComplete="off"
-      >
+      <form className="form" onSubmit={handleSubmit(handleSignIn)} autoComplete="off">
         <Field>
           <Label htmlFor="email">Email</Label>
           <Input
@@ -77,15 +70,11 @@ const SignInPage = () => {
           <InputPasswordToggle control={control} />
         </Field>
         <div className="have-account">
-          You haven't an account?{' '}
-          <NavLink to="/sign-up">Register an account.</NavLink>
+          You haven't an account? <NavLink to="/sign-up">Register an account.</NavLink>
         </div>
         <Button
           type="submit"
-          style={{
-            maxWidth: 300,
-            margin: '0 auto',
-          }}
+          className="w-full max-w-[300px] mx-auto"
           kind="primary"
           isLoading={isSubmitting}
           disable={isSubmitting}

@@ -18,11 +18,9 @@ const PostAddNew = () => {
     },
   });
   const watchStatus = watch('status');
+  console.log('🚀 ~ file: PostAddNew.jsx:21 ~ PostAddNew ~ watchStatus', watchStatus);
   const watchCategory = watch('category');
-  console.log(
-    '🚀 ~ file: PostAddNew.jsx:22 ~ PostAddNew ~ watchCategory',
-    watchCategory
-  );
+  console.log('🚀 ~ file: PostAddNew.jsx:22 ~ PostAddNew ~ watchCategory', watchCategory);
   return (
     <PostAddNewStyle>
       <h1 className="dashboard-heading">Add new post</h1>
@@ -30,19 +28,11 @@ const PostAddNew = () => {
         <div className="grid grid-cols-2 gap-x-10 mb-10">
           <Field>
             <Label>Title</Label>
-            <Input
-              control={control}
-              placeholder="Enter your title"
-              name="title"
-            />
+            <Input control={control} placeholder="Enter your title" name="title" />
           </Field>
           <Field>
             <Label>Slug</Label>
-            <Input
-              control={control}
-              placeholder="Enter your slug"
-              name="slug"
-            />
+            <Input control={control} placeholder="Enter your slug" name="slug" />
           </Field>
         </div>
         <div className="grid grid-cols-2 gap-x-10 mb-10">
@@ -53,7 +43,6 @@ const PostAddNew = () => {
                 name={'status'}
                 control={control}
                 checked={watchStatus === 'approved'}
-                onClick={() => setValue('status', 'approved')}
                 value="approved"
               >
                 Approved
@@ -63,7 +52,6 @@ const PostAddNew = () => {
                 control={control}
                 value="pending"
                 checked={watchStatus === 'pending'}
-                onClick={() => setValue('status', 'pending')}
               >
                 Pedding
               </Radio>
@@ -72,7 +60,6 @@ const PostAddNew = () => {
                 control={control}
                 value="reject"
                 checked={watchStatus === 'reject'}
-                onClick={() => setValue('status', 'reject')}
               >
                 Reject
               </Radio>

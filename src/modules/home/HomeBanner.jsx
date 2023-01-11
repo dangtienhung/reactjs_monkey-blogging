@@ -41,6 +41,7 @@ const HomeBannerStyle = styled.div`
       &-heading {
         font-size: 30px;
         margin-bottom: 10px;
+        font-weight: 600;
       }
       &-desc {
         font-size: 14px;
@@ -66,10 +67,9 @@ const HomeBanner = () => {
           <div className="banner-content">
             <h1 className="banner-heading">Monkey Blogging</h1>
             <p className="banner-desc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
-              cumque iure eos, reiciendis molestiae asperiores, voluptatibus
-              numquam quos quod dolores dicta pariatur exercitationem sequi,
-              nesciunt corrupti modi! Ullam, quasi sapiente!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus cumque iure eos,
+              reiciendis molestiae asperiores, voluptatibus numquam quos quod dolores dicta pariatur
+              exercitationem sequi, nesciunt corrupti modi! Ullam, quasi sapiente!
             </p>
             <Button
               type="button"
@@ -81,10 +81,7 @@ const HomeBanner = () => {
             </Button>
           </div>
           <div className="banner-image">
-            <img
-              src="/assets/images/banner/image-banner-home.png"
-              alt="banner"
-            />
+            <img src="/assets/images/banner/image-banner-home.png" alt="banner" />
           </div>
         </div>
       </div>

@@ -149,14 +149,12 @@ const Header = () => {
               className="header-button"
               to="/sign-in"
             >
-              Sign In
+              Login
             </Button>
           ) : (
             <div className="header-auth">
               <span>Welcome back,</span>
-              <strong className="text-primary">
-                {getLastName(userInfo?.displayName)}
-              </strong>
+              <strong className="text-primary">{getLastName(userInfo?.displayName)}</strong>
             </div>
           )}
         </div>
