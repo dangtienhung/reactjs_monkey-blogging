@@ -9,5 +9,6 @@ export { default as Radio } from './checkbox/Radio';
 export { default as Option } from './dropdown/Option';
 export { default as DropDown } from './dropdown/DropDown';
 export { default as Search } from './dropdown/Search';
+export { default as ImageUpload } from './image/ImageUpload';
 
 DropDown.Option = Option;

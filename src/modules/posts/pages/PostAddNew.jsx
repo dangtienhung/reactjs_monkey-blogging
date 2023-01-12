@@ -5,26 +5,39 @@ import { Field } from '../../../components/field';
 import { Label } from '../../../components/layouts/label';
 import { Input } from '../../../components/layouts/input';
 import { Button } from '../../../components/button';
-import { Checkbox, DropDown, Option, Radio } from '../../../components/layouts';
+import { DropDown, ImageUpload, Option, Radio } from '../../../components/layouts';
+import slugify from 'slugify';
+import { postStatus } from '../../../utils/constants';
+import { useFirebaseImage } from '../../../hooks/useFireBaseImage';
 
 const PostAddNewStyle = styled.div``;
 
 const PostAddNew = () => {
-  const { handleSubmit, watch, setValue, control } = useForm({
+  const { handleSubmit, watch, setValue, control, getValues } = useForm({
     mode: 'onChange',
     defaultValues: {
-      status: '',
+      title: '',
+      slug: '',
+      status: 2,
       category: '',
     },
   });
   const watchStatus = watch('status');
-  console.log('🚀 ~ file: PostAddNew.jsx:21 ~ PostAddNew ~ watchStatus', watchStatus);
-  const watchCategory = watch('category');
-  console.log('🚀 ~ file: PostAddNew.jsx:22 ~ PostAddNew ~ watchCategory', watchCategory);
+  const handleAddNewPost = async (data) => {
+    const cloneData = { ...data };
+    cloneData.slug = slugify(data.slug || data.title);
+    cloneData.status = Number(data.status);
+    console.log(cloneData);
+  };
+  /* xử lí upload hình ảnh lên firebase */
+  const { image, progress, handleSelectImage, handleDelete } = useFirebaseImage(
+    setValue,
+    getValues
+  );
   return (
     <PostAddNewStyle>
       <h1 className="dashboard-heading">Add new post</h1>
-      <form action="">
+      <form action="" onSubmit={handleSubmit(handleAddNewPost)}>
         <div className="grid grid-cols-2 gap-x-10 mb-10">
           <Field>
             <Label>Title</Label>
@@ -37,29 +50,38 @@ const PostAddNew = () => {
         </div>
         <div className="grid grid-cols-2 gap-x-10 mb-10">
           <Field>
+            <Label htmlFor="image">Image</Label>
+            <ImageUpload
+              onChange={handleSelectImage}
+              handleDelete={handleDelete}
+              progress={progress}
+              image={image}
+            />
+          </Field>
+          <Field>
             <Label>Status</Label>
             <div className="flex items-center gap-x-5">
               <Radio
                 name={'status'}
                 control={control}
-                checked={watchStatus === 'approved'}
-                value="approved"
+                checked={Number(watchStatus) === postStatus.APPROVED}
+                value={postStatus.APPROVED}
               >
                 Approved
               </Radio>
               <Radio
                 name={'status'}
                 control={control}
-                value="pending"
-                checked={watchStatus === 'pending'}
+                checked={Number(watchStatus) === postStatus.PENDING}
+                value={postStatus.PENDING}
               >
                 Pedding
               </Radio>
               <Radio
                 name={'status'}
                 control={control}
-                value="reject"
-                checked={watchStatus === 'reject'}
+                checked={Number(watchStatus) === postStatus.REJECTED}
+                value={postStatus.REJECTED}
               >
                 Reject
               </Radio>
