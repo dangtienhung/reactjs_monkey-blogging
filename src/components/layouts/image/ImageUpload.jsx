@@ -25,14 +25,14 @@ const ImageUpload = (props) => {
         </div>
       )}
       {progress !== 0 && !image && (
-        <div className="loading w-10 h-10 rounded-full animate-spin border-2 border-green-500 border-t-transparent absolute z-10"></div>
+        <div className="absolute z-10 w-10 h-10 border-2 border-green-500 rounded-full loading animate-spin border-t-transparent"></div>
       )}
       {image && (
         <>
-          <img src={image} className="w-full h-full object-cover" alt="photo" />
+          <img src={image} className="object-cover w-full h-full" alt="photo" />
           <button
             type="button"
-            className="w-16 h-16 rounded-full bg-white cursor-pointer z-10 absolute flex items-center justify-center text-red-500 opacity-0 invisible transition-all group-hover:opacity-100 group-hover:visible"
+            className="absolute z-10 flex items-center justify-center invisible w-16 h-16 text-red-500 transition-all bg-white rounded-full opacity-0 cursor-pointer group-hover:opacity-100 group-hover:visible"
             onClick={handleDelete}
           >
             <svg
@@ -54,7 +54,7 @@ const ImageUpload = (props) => {
       )}
       {!image && (
         <div
-          className="absolute w-10 h-1 bg-green-400 bottom-0 left-0 transition-all image-upload-progress"
+          className="absolute bottom-0 left-0 w-10 h-1 transition-all bg-green-400 image-upload-progress"
           style={{ width: `${Math.ceil(progress)}%` }}
         ></div>
       )}
